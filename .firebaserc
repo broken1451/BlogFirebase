@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "blog-adee5": {
+      "hosting": {
+        "blog": [
+          "blog-adee5"
+        ]
+      }
+    }
+  }
+}
