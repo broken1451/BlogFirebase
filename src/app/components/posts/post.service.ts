@@ -49,33 +49,45 @@ export class PostService {
     return this.postCollection.doc(post.id).delete();
   }
 
-  updatePost(post: Post) {
-    return this.postCollection.doc(post.id).update(post);
+  updatePost(post: Post, img?: File) {
+    if (img) {
+      this.uploadImg(post, img);
+    } else {
+      return this.postCollection.doc(post.id).update(post);
+    }
   }
 
   private uploadImg(post: Post, img: File) {
-    // creando ruta en storage de firebaseStorage
-    this.filePath = `images/${img.name};`;
-    // referencia donde se encuentra la imagen
-    const fileRef = this.storage.ref(this.filePath);
-    // tarea para subir la img
-    const taks = this.storage.upload(this.filePath, img);
-    taks
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          // devuelve la url de la img
-          fileRef.getDownloadURL().subscribe((urlImg) => {
-            console.log({ urlImg, post });
-            this.urlImg = urlImg;
-            // call addPost()
-            this.savePost(post);
-          });
-        })
-      )
-      .subscribe((res) => {
-        console.log('res =====> ', res);
-      });
+    try {
+      if (!img) {
+        img.name = 'https://i.stack.imgur.com/GNhxO.png';
+        console.log('aqui', img.name);
+      }
+      // creando ruta en storage de firebaseStorage
+      this.filePath = `images/${img.name};`;
+      // referencia donde se encuentra la imagen
+      const fileRef = this.storage.ref(this.filePath);
+      // tarea para subir la img
+      const taks = this.storage.upload(this.filePath, img);
+      taks
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            // devuelve la url de la img
+            fileRef.getDownloadURL().subscribe((urlImg) => {
+              console.log({ urlImg, post });
+              this.urlImg = urlImg;
+              // call addPost()
+              this.savePost(post);
+            });
+          })
+        )
+        .subscribe((res) => {
+          console.log('res =====> ', res);
+        });
+    } catch (error) {
+      console.log({ error });
+    }
   }
 
   preAddAndUpdatePost(post: Post, img: File) {
@@ -90,7 +102,11 @@ export class PostService {
       fileRef: this.filePath,
       tagsPost: post.tagsPost,
     };
-    // TODO edit post
-    this.postCollection.add(postObj);
+
+    if (post.id) {
+      return this.postCollection.doc(post.id).update(postObj);
+    } else {
+      return this.postCollection.add(postObj);
+    }
   }
 }

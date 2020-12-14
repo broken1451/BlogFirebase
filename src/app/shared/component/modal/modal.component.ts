@@ -10,13 +10,14 @@ export class ModalComponent implements OnInit {
   // constructor(public dialog: MatDialogRef<componentequesequiererenderisar>) { }
   constructor(
     public dialog: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public message: any
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.message = {
-      data: {
-        nombre: 'adrian jose bravo viloria',
-      },
-    };
+    // this.data = {
+    //   data: {
+    //     nombre: 'adrian jose bravo viloria',
+    //   },
+    // };
+    console.log({data})
   }
 
   ngOnInit(): void {}

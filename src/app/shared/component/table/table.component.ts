@@ -54,17 +54,25 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.openDialog();
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ModalComponent,{});
+  openDialog(post?: Post) {
+    const config = {
+      data: {
+        message: post ? 'Edit post' : 'New post',
+        content: post,
+      },
+    };
+
+    const dialogRef = this.dialog.open(ModalComponent, config);
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
       this.data = result;
-      console.log({result})
+      console.log({ result });
     });
   }
 
   edit(element: Post) {
     console.log(element);
+    this.openDialog(element);
   }
 
   delete(element: Post) {

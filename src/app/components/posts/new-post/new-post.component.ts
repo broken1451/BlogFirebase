@@ -20,24 +20,28 @@ export class NewPostComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {}
-
+ 
   get newPost(){
     return this.newPostForm.controls;
   }
 
   addNewPost(){
     // if (!this.img) {
-    //   this.img = '../../../../assets/no-img.jpg'
+    //   this.img = 'https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U'
     //   this.postService.preAddAndUpdatePost(this.newPostForm.value, this.img);
     //   return
-    // } else {
+    // } else { 
     //   return;
     // }
     this.postService.preAddAndUpdatePost(this.newPostForm.value, this.img);
   }
 
   handleImg(event){
-    this.img = event.target.files[0];
-
+    console.log(event.target.files)
+    if (this.img == '') {
+      this.img = 'https://i.stack.imgur.com/GNhxO.png';
+    } else {
+      this.img = event.target.files[0];
+    }
   }
 }
