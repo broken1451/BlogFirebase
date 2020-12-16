@@ -7,6 +7,13 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
+      // {
+      //   path: '',
+      //   loadChildren: () =>
+      //     import('../posts/list-post/list-post.module').then(
+      //       (m) => m.ListPostModule
+      //     ),
+      // },
       {
         path: 'posts',
         loadChildren: () =>

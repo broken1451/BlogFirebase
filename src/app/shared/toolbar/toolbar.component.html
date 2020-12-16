@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
   <a [routerLink]="['/']">{{ appName }}</a>
   <span class="fill-remaining-space"></span>
-  <a [routerLink]="['/admin']" routerLinkActive="active" *ngIf="autService.userData | async">
+  <a [routerLink]="['/admin']" routerLinkActive="active" *ngIf="autService.userData$ | async">
     <button mat-button>Admin</button>
   </a>
   <a [routerLink]="['/about']" routerLinkActive="active">
     <button mat-button>About</button>
   </a>
-  <a *ngIf="autService.userData | async;else showLogin" (click)="logout()">
+  <a *ngIf="autService.userData$ | async;else showLogin" (click)="logout()">
     <button mat-button>Logout</button>
   </a>
 
