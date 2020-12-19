@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewPostComponent } from './components/posts/new-post/new-post.component';
-import { PostComponent } from './components/posts/post/post.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
@@ -21,16 +20,18 @@ import { ContainerAppComponent } from './components/pages/container-app/containe
 import { ModalComponent } from './shared/component/modal/modal.component';
 import { EditPostComponent } from './components/posts/edit-post/edit-post.component';
 import { EditPostModule } from './components/posts/edit-post/edit-post.module';
+import { DetailsPostComponent } from './components/posts/post/details-post/details-post.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NewPostComponent,
-    PostComponent,
     ToolbarComponent,
     ContainerAppComponent,
     ModalComponent,
     EditPostComponent,
+    DetailsPostComponent,
   ],
   imports: [
     BrowserModule,

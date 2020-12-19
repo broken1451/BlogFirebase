@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PostComponent } from './components/posts/post/post.component';
 import { ContainerAppComponent } from './components/pages/container-app/container-app.component';
+import { DetailsPostComponent } from './components/posts/post/details-post/details-post.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'post/:id',
-        component: PostComponent,
+        component: DetailsPostComponent,
       },
       {
         path: 'about',

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from '../../../shared/models/post.interface';
 import { PostService } from '../post.service';
 import { Observable } from 'rxjs';
+
+
+
 
 @Component({
   selector: 'app-post',
@@ -23,7 +26,7 @@ export class PostComponent implements OnInit {
   //   imagePost: 'https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U'
   // }
 
-  public post: Post = {
+  public post1: Post = {
     id: '1',
     titlePost: 'one post',
     contentPost: 'hello',
@@ -31,21 +34,15 @@ export class PostComponent implements OnInit {
       'https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
   };
 
-  public post$: Observable<Post>;
+  // public post$: Observable<Post[]>
+  @Input() post: Post;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private postsService: PostService
-  ) {}
+  constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-   const id= this.activatedRoute.snapshot.params.id;
-    // this.activatedRoute.snapshot.params.id
-    // this.activatedRoute.snapshot.paramMap.get('id');
-    this.getOnePost(id)
-  }
-
-  getOnePost(id: string) {
-    this.post$ = this.postsService.getOnePost(id);
+    // this.postService.getAllPost().subscribe((res)=>{
+    //   console.log('res: ==>>>>>>>>>>', res);
+    // })
+    // this.post$ = this.postService.getAllPost();
   }
 }
