@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 import { AdminComponent } from './admin.component';
+{}
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
-      // {
-      //   path: '',
-      //   loadChildren: () =>
-      //     import('../posts/list-post/list-post.module').then(
-      //       (m) => m.ListPostModule
-      //     ),
-      // },
       {
         path: 'posts',
         loadChildren: () =>

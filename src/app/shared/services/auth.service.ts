@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.interface';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { File } from '../models/file.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -68,7 +68,6 @@ export class AuthService {
             this.saveUser(user);
           });
         })
-      )
-      .subscribe();
+      ).subscribe();
   }
 }
